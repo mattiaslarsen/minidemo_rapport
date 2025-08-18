@@ -1,0 +1,30 @@
+# 🎯 SYFTE
+# maps.yaml är ett AI-läsbart systemregister för minidemo_rapport.
+# Den gör systemet promptbart, begripligt och situationsanpassat i realtid.
+
+app:
+  syfte: "Streamlit-applikation som tillhandahåller UI för att skapa veckorapporter"
+  input: "Användarinput via formulär (sammanfattning, aktivitet, timmar, kommentar)"
+  output: "Word-dokument som laddas ner av användaren"
+  trigger: "streamlit run app.py"
+  beroenden: "models.rapport, rapportgenerering.skapa_dokument"
+
+models.rapport:
+  syfte: "Datamodell för veckorapport med Pydantic-validering"
+  input: "Rapportdata från UI-formulär"
+  output: "Validerat Rapport-objekt"
+  format: "Pydantic BaseModel med fält: sammanfattning, aktivitet, timmar, kommentar"
+  anrop: "Rapport(sammanfattning=..., aktivitet=..., timmar=..., kommentar=...)"
+
+rapportgenerering.skapa_dokument:
+  syfte: "Genererar Word-dokument från rapportdata med Jinja2-mall"
+  input: "Rapport-objekt från models.rapport"
+  output: "Word-dokument (rapport_output.docx)"
+  beroenden: "rapportgenerering.mall.wordmall.docx"
+  anrop: "skapa_dokument(rapport)"
+
+rapportgenerering.mall:
+  syfte: "Innehåller Word-mallar för PDF-generering"
+  input: "Word-mall (.docx) med platshållare"
+  output: "Rendering av mall med rapportdata"
+  format: "DocxTemplate med variabler som matchar Rapport-fält"
