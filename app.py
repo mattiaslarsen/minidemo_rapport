@@ -9,7 +9,7 @@ with st.form("rapportform"):
     aktivitet = st.text_input("Aktivitet")
     timmar = st.number_input("Timmar", min_value=0.0, step=0.5)
     kommentar = st.text_input("Kommentar")
-    submitted = st.form_submit_button("Spara till PDF")
+    submitted = st.form_submit_button("Spara till Word")
 
 if submitted:
     try:
